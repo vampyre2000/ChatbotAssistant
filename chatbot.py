@@ -15,16 +15,62 @@ class Chatbot():
 		##BOT VARIABLES
 		self.BOT={'FIRSTNAME':'Alice','LASTNAME':'Dunn','SEX':'female','AGE':'21','CITY':'Sydney','FAVOURITE_COLOUR':'Blue'}
 		
-  def SPEAK(self,words):
-		if self.SPEECHENABLED:
-			self.w="\'\"" + words + "\"\'"
-			print(words)
-			#os.system('espeak -v+f2 ' + self.w)
-			subprocess.run('espeak -v+f2 ' + self.w)
-			#call('espeak -v+f2 ' + self.w, shell=True)
-		else:
-			print(words)
-      
+        self.ALARMS={'WAKEUP':'','BEDTIME':'','GOTOWORK':''}
+    #Bot will give a self description of themselves.
+    #def description(self):
+    def BotDescription(self):
+        print("My name is " + self.BOT['FIRSTNAME'] + " but my friends call me " + self.BOT['NICKNAME'] + ". I have " + self.BOT['HAIR_LENGTH'] + " " + self.BOT['HAIR_COLOUR']
+            + " hair and " + self.BOT['EYE_COLOUR'] + " eyes.")
+    def SpeechEnable(self):
+        self.SPEECHENABLED=True
+    
+    def SpeechDisable(self):
+        self.SPEECHENABLED=False
+        
+    def BotProfile(self):
+        for name in self.BOT:
+            print ("> " + name + ":                    " + self.BOT[name])
+
+    def Settings(self):
+        if self.SPEECHENABLED==True:
+            print("Speech is Enabled")
+        else:
+            print("Speech is Disabled")
+        if len(self.ALARMS)==0:
+            print("There are no alarms set")
+        else:
+            print(self.ALARMS)
+
+    def greeting(self):
+        self.num=random.randint(1, 3)
+        if self.num==1:
+            self.SPEAK(">>Hi, my name is " +self.BOT['FIRSTNAME']+"." +" How are you today?")
+        if self.num==2:
+            self.SPEAK(">>Hello, my name is " +self.BOT['FIRSTNAME']+"." +" How are you today?")
+        if self.num==3:
+            self.SPEAK(">>G'day mate, my name is " +self.BOT['FIRSTNAME']+"." +" How are you today?")
+        self.FEELING=input("::")
+        self.FEELING=self.FEELING.lower()
+        if self.FEELING=="good":
+            self.SPEAK(">> Thats great!!!!")
+        if self.FEELING=="bad":
+            self.SPEAK(">> I'm sorry to hear that...")
+
+    def getname(self):
+        self.USER['NAME']=input(">>What is your name? ")
+        self.SPEAK(">>Nice to meet you "+self.USER['NAME']+".")
+
+
+    # This is the SPEECH Engine. Uses espeak 
+    def SPEAK(self,words):
+        if self.SPEECHENABLED:
+            #we have to escape the string or espeak gets confused
+            self.w="\'\"" + words + "\"\'"
+            print(words)
+            os.system('espeak -v+f2 ' + self.w)
+        else:
+            print(words)
+
     # Just tells the user goodbye, needs to be enhanced.
     def Goodbye(self,name):
         self.SPEAK("Bye, "+ name+"!")
