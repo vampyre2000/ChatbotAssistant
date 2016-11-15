@@ -9,13 +9,13 @@ import time
 from datetime import datetime
 
 class Chatbot():
-	def __init__(self):
-		#Set this to True to enable speech.
-		self.SPEECHENABLED=False
-		##BOT VARIABLES
-		self.BOT={'FIRSTNAME':'Alice','LASTNAME':'Dunn','SEX':'female','AGE':'21','CITY':'Sydney','FAVOURITE_COLOUR':'Blue'}
-		
-        self.ALARMS={'WAKEUP':'','BEDTIME':'','GOTOWORK':''}
+    def __init__(self):
+	#Set this to True to enable speech.
+	self.SPEECHENABLED=False
+	##BOT VARIABLES
+	self.BOT={'FIRSTNAME':'Alice','LASTNAME':'Dunn','SEX':'female','AGE':'21','CITY':'Sydney','FAVOURITE_COLOUR':'Blue'}
+	self.USER={'FIRSTNAME':'Jack','LASTNAME':'Daniels','SEX':'male','AGE':'21','CITY':'Sydney','FAVOURITE_COLOUR':'Blue'}
+    self.ALARMS={'WAKEUP':'','BEDTIME':'','GOTOWORK':''}
     #Bot will give a self description of themselves.
     #def description(self):
     def BotDescription(self):
