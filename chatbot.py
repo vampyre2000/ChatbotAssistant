@@ -1,23 +1,44 @@
+#################################
 # Chatbot Assistant 0.0.1
 # 2016 General Public License V3
 # By Brendan Clarke
+#################################
 
 import random
 import os
-import subprocess
 import time
+import csv
+import json
+import subprocess
+import requests
 from datetime import datetime
+
+#set file location paths
+ROOT="./Chatbot"
+DATA=ROOT+"/Data"
+IMAGES=ROOT+"/Images"
+SOUND=ROOT+"/Sound"
+DATAFILE="data.txt"
+BOT1={}
+#Test code to be removed.
+def PrintDirectorySTructure():
+    print(ROOT)
+    print(DATA)
+    print(IMAGES)
+    print(SOUND)
+    
 
 class Chatbot():
     def __init__(self):
-	#Set this to True to enable speech.
-	self.SPEECHENABLED=False
-	##BOT VARIABLES
-	self.BOT={'FIRSTNAME':'Alice','LASTNAME':'Dunn','SEX':'female','AGE':'21','CITY':'Sydney','FAVOURITE_COLOUR':'Blue'}
-	self.USER={'FIRSTNAME':'Jack','LASTNAME':'Daniels','SEX':'male','AGE':'21','CITY':'Sydney','FAVOURITE_COLOUR':'Blue'}
-    self.ALARMS={'WAKEUP':'','BEDTIME':'','GOTOWORK':''}
-    #Bot will give a self description of themselves.
-    #def description(self):
+        #Set this to True to enable speech.
+        self.SPEECHENABLED=False
+        ##BOT VARIABLES
+        self.BOT={'FIRSTNAME':'Alice','LASTNAME':'Dunn','SEX':'female','AGE':'21','CITY':'Sydney','FAVOURITE_COLOUR':'Blue'}
+        self.USER={'FIRSTNAME':'Jack','LASTNAME':'Daniels','SEX':'male','AGE':'21','CITY':'Sydney','FAVOURITE_COLOUR':'Blue'}
+        self.ALARMS={'WAKEUP':'','BEDTIME':'','GOTOWORK':''}
+        #Bot will give a self description of themselves.
+        #def description(self):
+        
     def BotDescription(self):
         print("My name is " + self.BOT['FIRSTNAME'] + " but my friends call me " + self.BOT['NICKNAME'] + ". I have " + self.BOT['HAIR_LENGTH'] + " " + self.BOT['HAIR_COLOUR']
             + " hair and " + self.BOT['EYE_COLOUR'] + " eyes.")
@@ -29,7 +50,7 @@ class Chatbot():
         
     def BotProfile(self):
         for name in self.BOT:
-            print ("> " + name + ":                    " + self.BOT[name])
+            print ("> " + name + ": " + self.BOT[name])
 
     def Settings(self):
         if self.SPEECHENABLED==True:
@@ -149,32 +170,63 @@ class Chatbot():
     
 def talk():
     bot=Chatbot()
+    #CreateBotPersonality(1)
     bot.greeting()
     USERNAME=bot.getname()
     bot.GetUserInput()
-    bot.Goodbye(bot.USER['NAME'])
+    bot.Goodbye(bot.USER['FIRSTNAME'])
 
 def Help():
     print("Here are some commands you can use:")
-    print(">Help                   This menu item")
-    print(">Settings              Chatbot Settings")
-    print(">Profile bot           Chatbot personality profile")
-    print(">Profile user          Chatbot personality profile")
-    print(">Alarms                Chatbot Alarms")
-    print(">Speak-on            Turn Speech on")
-    print(">Speak-off            Turn Speech off")
-    print(">Reset                  Reset the bot. All data lost")
-    print(">Joke                   Tells a joke")
-    print(">Time                 Tells the current Time")
-    print(">Quit                   Quit the program")
+    print(">Help             This menu item")
+    print(">Settings         Chatbot Settings")
+    print(">bot profile      Shows bot personality profile")
+    print(">user profile     Shows user personality profile")
+    print(">Alarms           Chatbot Alarms")
+    print(">Speech on        Turn Speech on")
+    print(">Speech off       Turn Speech off")
+    print(">listen on        Turn Voice recognition on  <Not implemented>")
+    print(">listen off       Turn Voice recognition off  <Not implemented>")
+    print(">Reset            Reset the bot. All data lost")
+    print(">Joke             Tells a joke")
+    print(">version          Tells the current Time")
+    print(">Quit             Quit the program")
+
+def SayEvent(day,month,year,event):
+    day=str(day)
+    if len(day)>1:
+    #special case 11,12,13
+        if (day[-2:]=="11" or day[-2:]=="12" or day[-2:]=="13"):
+            postfix="th"
+        elif day[-1:]=="1":
+            postfix="st"
+        elif day[-1:]=="2":
+            postfix="nd"
+        elif day[-1:]=="3":
+            postfix="rd"
+        else:
+            postfix="th"
+    else:
+        if day=="1":
+            postfix="st"
+        elif day=="2":
+            postfix="nd"
+        elif day=="3":
+            postfix="rd"
+        elif day=="4":
+            postfix="th"
+        else:
+            postfix="th"
+            print("Your " + event + " is on the " + day + postfix + " " + month)
+
 
 def TellJoke():
+    #JOKECOUNT=JOKECOUNT+1 #TODO We need to increment the joke counter so that we know we have already told the joke today
+    #JOKETIME              #TODO We keep track of the joke time so that we know when we have told the joke.
     JOKEQ="Where do you find a dog with no legs?"
-    JOKEA="Where you left him. hahah"
+    JOKEA="Where you left him"
     print (JOKEQ)
-    time.sleep(2)
+    time.sleep(1)
     print (JOKEA)
-#Writedata()
-#Readdata()
-#ReadGirlnames()
+    
 talk()
