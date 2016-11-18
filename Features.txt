@@ -1,0 +1,72 @@
+Alive:
+    are you a robot?
+    are you a bot?
+    are you a chatbot?
+    who created you?
+    when were you created?
+    do you breathe?
+    are you alive?
+
+About bot:
+    when were you born?
+    what is your name?
+    what is your lastname?
+    what is your nickname?
+    do you have any pets
+    what are your hobbies
+    do you have a hobbie
+    do you smoke?
+    do you drink?
+    how old are you?
+    where do you live?
+
+
+Descriptions of bot:
+    how tall are you?
+    what colour eyes do you have?
+    what is your favourite food?
+    do you have long hair?
+    what colur hair do you have?
+    whats your favourite animal?
+    what is your favourite colour?
+    what do you look like?
+    describe yourself
+    are you female?
+    are you male?
+
+
+how are you?
+"do you like robots?"
+"what did you have for dinner?
+
+how are you?
+are you a merp?
+what is love?
+what time is it
+what day is it
+what's the date today
+how many days to my birthday
+who's birthday is in the next X days.
+
+when is your birthday?
+when is my birthday?
+what is my name?
+who are you?
+who am i?
+anniversarys
+set alarm for X am/pm
+set alarm X minutes.
+diagnostics
+what did I just ask you.
+
+
+"i love you":
+"i hate you":
+"Speak-on":
+"Speak-off":
+"Alarms":
+joke
+tell me a joke.
+help
+hello
+thankyou
