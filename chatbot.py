@@ -99,15 +99,6 @@ class Chatbot():
     def DecisionEngine(self,INPUT):
         if INPUT=="how old are you?":
             self.SPEAK(">> I am "+self.BOT['AGE']+".")
-        elif INPUT=="help":
-            self.SPEAK(">> This is the help menu.")
-            Help()
-        elif INPUT=="settings":
-            self.SPEAK(">> Chatbot Settings")
-            self.Settings()
-        elif INPUT=="joke":
-            self.SPEAK(">> Here is a joke")
-            TellJoke()
         elif INPUT=="where do you live?":
             self.SPEAK(">> I live in  "+self.BOT['CITY']+".")
         elif INPUT=="hello":
@@ -145,11 +136,24 @@ class Chatbot():
         elif INPUT=="what did you have for dinner?":
             self.SPEAK(">> I had virtual food...very delicious! How about you?")
             self.USER['FAVOURITE_FOOD']=input("::")
-        elif INPUT=="Speak-on":
+        elif INPUT=="help":
+            self.SPEAK(">> This is the help menu.")
+            Help()
+        elif INPUT=="settings":
+            self.SPEAK(">> Chatbot Settings")
+            self.Settings()
+        elif INPUT=="joke":
+            self.SPEAK(">> Here is a joke")
+            TellJoke()
+        elif INPUT=="speech on":
             self.SpeechEnable(self)
-        elif INPUT=="Speak-off":
+        elif INPUT=="speech off":
             self.SpeechDisable(self)
-        elif INPUT=="Alarms":
+        elif INPUT=="listen on":
+            self.SPEAK(">> Voice recognition is not currently enabled")
+        elif INPUT=="listen off":
+            self.SPEAK(">> Voice recognition is not currently enabled")
+        elif INPUT=="show alarms":
             self.Alarms(self)
         elif (INPUT=="bye" or INPUT=="goodbye"):
             print("See you next time")
@@ -178,13 +182,13 @@ def talk():
 
 def Help():
     print("Here are some commands you can use:")
-    print(">Help             This menu item")
-    print(">Settings         Chatbot Settings")
+    print(">help             This menu item")
+    print(">settings         Chatbot Settings")
     print(">bot profile      Shows bot personality profile")
     print(">user profile     Shows user personality profile")
-    print(">Alarms           Chatbot Alarms")
-    print(">Speech on        Turn Speech on")
-    print(">Speech off       Turn Speech off")
+    print(">show Alarms      Chatbot Alarms")
+    print(">speech on        Turn Speech on")
+    print(">speech off       Turn Speech off")
     print(">listen on        Turn Voice recognition on  <Not implemented>")
     print(">listen off       Turn Voice recognition off  <Not implemented>")
     print(">Reset            Reset the bot. All data lost")
