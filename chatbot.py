@@ -27,18 +27,35 @@ def PrintDirectorySTructure():
     print(IMAGES)
     print(SOUND)
     
-
+#The main chatbot class. 
 class Chatbot():
     def __init__(self):
         #Set this to True to enable speech.
+        self.BOT={}
+        self.USER={}
         self.SPEECHENABLED=False
-        ##BOT VARIABLES
-        self.BOT={'FIRSTNAME':'Alice','LASTNAME':'Dunn','SEX':'female','AGE':'21','CITY':'Sydney','FAVOURITE_COLOUR':'Blue'}
+        self.CreateBotPersonality(1)
         self.USER={'FIRSTNAME':'Jack','LASTNAME':'Daniels','SEX':'male','AGE':'21','CITY':'Sydney','FAVOURITE_COLOUR':'Blue'}
         self.ALARMS={'WAKEUP':'','BEDTIME':'','GOTOWORK':''}
         #Bot will give a self description of themselves.
         #def description(self):
-        
+    
+    def CreateBotPersonality(self,num):
+        BOT1={'FIRSTNAME':'Alice','LASTNAME':'Boyle','NICKNAME':'Ali','SEX':'female','AGE':'21','DOB':' ','HEIGHT':'160','WEIGHT':'49','EYE_COLOUR':'blue','HAIR_COLOUR':'Brown',
+                        'HAIR_LENGTH':'Long',' HAIR_STYLE':'Bun','FRECKLES':'YES','CITY':'Sydney','COUNTRY':'Australia','ADDRESS':' ','FAVOURITE_COLOUR':'blue','FAVOURITE_FOOD':'Spong cake',
+                        'FAVOURITE_ANIMAL':'rabbit','PETS':'no','LIKES':'computers','DISLIKES':'snakes'}
+        BOT2={'FIRSTNAME':'Jane','LASTNAME':'Andrews','NICKNAME':'','SEX':'female','AGE':'23','DOB':' ','HEIGHT':'160','WEIGHT':'50','EYE_COLOUR':'green','HAIR_COLOUR':'Black',
+                        'HAIR_LENGTH':'Long',' HAIR_STYLE':'ponytail','FRECKLES':'NO','CITY':'Sydney','COUNTRY':'Australia','ADDRESS':' ','FAVOURITE_COLOUR':'red','FAVOURITE_FOOD':'Spong cake',
+                        'FAVOURITE_ANIMAL':'cat','PETS':'no','LIKES':'computers','DISLIKES':'mice'}
+        if num==1:
+            BOT=BOT1
+        elif num==2:
+            self.BOT=BOT2
+        else:
+            print("No valid bot personaily chosen. Using Default personality")
+            self.BOT=BOT1
+    
+    
     def BotDescription(self):
         print("My name is " + self.BOT['FIRSTNAME'] + " but my friends call me " + self.BOT['NICKNAME'] + ". I have " + self.BOT['HAIR_LENGTH'] + " " + self.BOT['HAIR_COLOUR']
             + " hair and " + self.BOT['EYE_COLOUR'] + " eyes.")
@@ -99,15 +116,6 @@ class Chatbot():
     def DecisionEngine(self,INPUT):
         if INPUT=="how old are you?":
             self.SPEAK(">> I am "+self.BOT['AGE']+".")
-        elif INPUT=="help":
-            self.SPEAK(">> This is the help menu.")
-            Help()
-        elif INPUT=="settings":
-            self.SPEAK(">> Chatbot Settings")
-            self.Settings()
-        elif INPUT=="joke":
-            self.SPEAK(">> Here is a joke")
-            TellJoke()
         elif INPUT=="where do you live?":
             self.SPEAK(">> I live in  "+self.BOT['CITY']+".")
         elif INPUT=="hello":
@@ -145,11 +153,24 @@ class Chatbot():
         elif INPUT=="what did you have for dinner?":
             self.SPEAK(">> I had virtual food...very delicious! How about you?")
             self.USER['FAVOURITE_FOOD']=input("::")
-        elif INPUT=="Speak-on":
+        elif INPUT=="help":
+            self.SPEAK(">> This is the help menu.")
+            Help()
+        elif INPUT=="settings":
+            self.SPEAK(">> Chatbot Settings")
+            self.Settings()
+        elif INPUT=="joke":
+            self.SPEAK(">> Here is a joke")
+            TellJoke()
+        elif INPUT=="speech on":
             self.SpeechEnable(self)
-        elif INPUT=="Speak-off":
+        elif INPUT=="speech off":
             self.SpeechDisable(self)
-        elif INPUT=="Alarms":
+        elif INPUT=="listen on":
+            self.SPEAK(">> Voice recognition is not currently enabled")
+        elif INPUT=="listen off":
+            self.SPEAK(">> Voice recognition is not currently enabled")
+        elif INPUT=="show alarms":
             self.Alarms(self)
         elif (INPUT=="bye" or INPUT=="goodbye"):
             print("See you next time")
@@ -178,13 +199,13 @@ def talk():
 
 def Help():
     print("Here are some commands you can use:")
-    print(">Help             This menu item")
-    print(">Settings         Chatbot Settings")
+    print(">help             This menu item")
+    print(">settings         Chatbot Settings")
     print(">bot profile      Shows bot personality profile")
     print(">user profile     Shows user personality profile")
-    print(">Alarms           Chatbot Alarms")
-    print(">Speech on        Turn Speech on")
-    print(">Speech off       Turn Speech off")
+    print(">show Alarms      Chatbot Alarms")
+    print(">speech on        Turn Speech on")
+    print(">speech off       Turn Speech off")
     print(">listen on        Turn Voice recognition on  <Not implemented>")
     print(">listen off       Turn Voice recognition off  <Not implemented>")
     print(">Reset            Reset the bot. All data lost")
