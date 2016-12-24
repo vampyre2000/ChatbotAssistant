@@ -18,11 +18,6 @@ import py_compile
 from datetime import datetime
 py_compile.compile('Chatbot.dynamic.py')
 
-#myHandler = bot_handlers.QuestionHandler()
-#while True:
-#question = input("\n\nWhat the hell do you want to know?\n\n")
-#answer = getattr(myHandler, qna_dict[question])
-#answer()
 
 class Chatbot():
     def __init__(self):
