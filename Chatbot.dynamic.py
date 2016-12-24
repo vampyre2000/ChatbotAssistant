@@ -76,9 +76,9 @@ class Chatbot():
         NAMES=[]
         #Reads the list of names and puts them in a list object.
         if TYPE=="male":
-            filename="Boy.txt"
+            filename="MaleNames.txt"
         elif TYPE=="female":    
-            filename="Girlnames.txt"
+            filename="FemaleNames.txt"
         else:
             print("Error in filetype")
             exit
